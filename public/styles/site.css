@@ -4808,16 +4808,27 @@ button.close {
     display: none !important; }
  }
 
+.product {
+  margin-bottom: 10px; }
+  .product__image {
+    width: 100%;
+    height: auto; }
+  .product__title {
+    margin-top: 10px;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+
 #header {
   margin-top: 30px; }
+  #header .navbar-brand {
+    text-indent: -9999px;
+    background: url('http://www.winti-baeren.ch/wp-content/uploads/b%C3%A4r_logo.png') no-repeat;
+    background-size: contain; }
 
 #footer {
   margin-top: 30px;
   border-top: 1px solid #eeeeee;
   padding-top: 30px;
   color: #777777; }
-
-.gallery-image img {
-  display: block;
-  max-width: 100%;
-  height: auto; }

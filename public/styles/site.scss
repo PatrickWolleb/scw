@@ -13,10 +13,17 @@
 // use in your site stylesheets.
 
 @import "site/variables";
-
+@import "site/mixins";
 
 // Site Styles
 // ===========
 
+// Components
+@import "site/product";
+
 // Add your own site style includes here
 @import "site/layout";
+
+
+
+

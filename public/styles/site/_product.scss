@@ -1,0 +1,15 @@
+.product {
+	margin-bottom : 10px;
+
+	&__image {
+		width: 100%;
+		height: auto;
+	}
+
+	&__title {
+		margin-top: 10px;
+		font-size: 18px;
+		@include elipsis;
+	}
+
+}
