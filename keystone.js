@@ -29,7 +29,9 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'cookie secret': 'vU}"pM`R4OnsSFk"fvvy;q@EF$?U!orx(ak-oB#`/=?>&cK<r,%#^Ji{L_,!W;ID'
+	'cookie secret': 'vU}"pM`R4OnsSFk"fvvy;q@EF$?U!orx(ak-oB#`/=?>&cK<r,%#^Ji{L_,!W;ID',
+
+	'mongo': process.env.MONGOLAB_URI || 'mongodb://localhost/scw',		
 
 });
 
