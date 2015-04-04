@@ -8,7 +8,7 @@ exports = module.exports = function(req, res) {
 	// Set locals
 	locals.section = '';
 	locals.filters = {
-		post: req.params.post
+		slug: req.params.slug
 	};
 	locals.data = {
 		posts: []
@@ -19,11 +19,12 @@ exports = module.exports = function(req, res) {
 		
 		var q = keystone.list('Product').model.findOne({
 			state: 'published',
-			slug: locals.filters.post
+			slug: locals.filters.slug
 		}).populate('author categories');
 		
 		q.exec(function(err, result) {
 			locals.data.product = result;
+			locals.data.product.vo = JSON.stringify(result);
 			next(err);
 		});
 		

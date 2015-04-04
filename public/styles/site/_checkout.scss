@@ -1,0 +1,14 @@
+.checkout {
+	&__list {
+		display: none;
+		width: 100%;
+		height: 200px;
+		background: red;
+	}
+
+	&--show {
+		.checkout__list {
+			display: block;
+		}
+	}
+}

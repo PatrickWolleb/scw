@@ -4820,6 +4820,14 @@ button.close {
     overflow: hidden;
     text-overflow: ellipsis; }
 
+.checkout__list {
+  display: none;
+  width: 100%;
+  height: 200px;
+  background: red; }
+.checkout--show .checkout__list {
+  display: block; }
+
 #header {
   margin-top: 30px; }
   #header .navbar-brand {
