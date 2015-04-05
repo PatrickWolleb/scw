@@ -6,6 +6,7 @@ var keystone = require('keystone'),
  * ==========
  */
 
+
 var Product = new keystone.List('Product', {
 	autokey: { path: 'slug', from: 'name', unique: true }
 });
@@ -15,8 +16,10 @@ Product.add({
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
 	author: { type: Types.Relationship, ref: 'User', index: true },
 	publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
+
 	image: { type: Types.CloudinaryImage },
 	content: {
+		price : { type : Types.Number },
 		description: { type: Types.Html, wysiwyg: true, height: 150 }
 	}
 	//categories: { type: Types.Relationship, ref: 'ProductCategory', many: true }

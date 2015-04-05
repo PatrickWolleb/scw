@@ -1,0 +1,40 @@
+{% extends "templates/layouts/default.html" %}
+
+{% block content %}
+	<div class="container">
+		
+			
+			<table id="checkout" class="row">
+				<thead>
+					<tr>
+						<td>name</td>
+						<td>Count</td>
+						<td>1000</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>name</td>
+						<td>Count</td>
+						<td>1000</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			
+			<form method="post"  action="/checkout">
+
+				<div class="form-group">
+					<label for="firstName">Vorname:</label>
+					<input  class="form-control" type="text" id="firstName"></input>
+				</div>
+
+				<input type="submit" value="Bestellen"> 
+
+			</form>
+
+	</div>
+
+
+
+{% endblock %}

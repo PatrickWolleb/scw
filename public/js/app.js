@@ -55,12 +55,42 @@ angle.module('wb')
 	selector : '#checkout', 
 	link : function(element, Cart) {
 
+		var cart = Cart.get();
 
-		element.querySelector('.checkout__btn').addEventListener('click', function() {
-			console.log(this)
+		
 
-			$(element).addClass('checkout--show');
+		cart.forEach(function(product){
+
+			var article = document.createElement('article');
+			article.setAttribute('class', 'col-xs-12 col-sm-6 col-md-4 col-lg-3 product');
+
+			var title = document.createElement('span');
+			title.innerHTML = product.name;
+			article.appendChild(title);
+
+			var quantity = document.createElement('span');
+			quantity.innerHTML =  product.count;
+			article.appendChild(quantity);
+
+
+			var price = document.createElement('span');
+			price.innerHTML = 'SFr. ' + product.content.price.toFixed(2)
+			article.appendChild(price);
+
+			
+			
+
+			element.appendChild(article);
 		});
+
+		// var el = $(element); 
+		// element.querySelector('.checkout__btn').addEventListener('click', function() {
+		// 	if(el.hasClass('checkout--show')) {
+		// 		el.removeClass('checkout--show');	
+		// 	} else {
+		// 		el.addClass('checkout--show');
+		// 	}
+		// });
 
 	
 	} 
