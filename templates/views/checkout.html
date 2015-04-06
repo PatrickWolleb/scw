@@ -3,7 +3,7 @@
 {% block content %}
 	<div class="container" id="checkout">
 
-
+		<div class="row">
 		{% if clearCart %}
 			<script type="text/javascript">
 				window.CLEAR_CART = true;
@@ -11,9 +11,11 @@
 		{% endif %}
 		
 		
-		<div id="empty" class="row">
-			<h1 class="col-xs-12">Warenkorb</h1>	
-		</div>
+		
+		<div id="empty" class="col-xs-12">
+			<h1>Warenkorb</h1>	
+		</div>		
+		
 		
 
 
@@ -22,32 +24,31 @@
 			  <thead>
 			    <tr>
 			      <th>Produkt</th>
-			      <th>Einheitspreis</th>
-			      <th>Anzahl</th>
 			      <th class="price">Preis</th>
+			      <th class="action"></th>
 			    </tr>
 			  </thead>
 			  <tfoot>
 			    <tr>
-			      <td></td>
-			      <td></td>
 			      <td>Total</td>
 			      <td id="total" class="price"></td>
+			      <td></td>
 			    </tr>
   			</tfoot>
 			  <tbody>
 			  	<tr id="vat">
-			  		<td>MWST.</td>
-			  		<td>8%</td>
-			  		<td></td>
+			  		<td>MWST. 8%</td>
 			  		<td class="price"></td>
+			  		<td></td>
 			  	</tr>
 			  </tbody>
 			</table>
 		</div>	
 				
 			
-			<form id="checkout-form" method="post">
+			<form id="checkout-form" method="post" class="col-xs-12">
+
+				<p class="lead">Bitte füllen das Formular aus and clicken Sie auf Bestellen. Wir werden Sie schnellst möglich via email knotaktiern um the Lifereng and Zahlung zu vereinbaren.</p>
 
 				<div class="col-md-6">
 					<div class="form-group">
@@ -94,7 +95,7 @@
 
 
 			</form>
-
+</div>
 	</div>
 
 

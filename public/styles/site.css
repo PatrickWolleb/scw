@@ -4836,6 +4836,10 @@ button.close {
   display: none; }
   #checkout .price {
     text-align: right; }
+  #checkout tfoot {
+    font-weight: bold; }
+  #checkout thead tr th:last-child {
+    width: 20px; }
 
 #header {
   margin-top: 30px; }

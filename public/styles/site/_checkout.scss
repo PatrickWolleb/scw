@@ -23,4 +23,12 @@
 	tfoot {
 		font-weight: bold;
 	}
+
+	thead {
+		tr {
+			th:last-child {
+				width: 20px;
+			}
+		}
+	}
 }
