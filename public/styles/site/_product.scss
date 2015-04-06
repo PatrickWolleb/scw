@@ -11,7 +11,10 @@
 		font-size: 18px;
 		@include elipsis;
 	}
-	&__desc {
-		
+	&__price {
+		font-size: 22px;
+		margin-right: 10px;
+		font-weight: bold;
 	}
+
 }

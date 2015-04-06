@@ -15,5 +15,12 @@
 
 
 #checkout {
-	width: 100%;
+	display: none;
+	.price {
+		text-align: right;
+	}
+
+	tfoot {
+		font-weight: bold;
+	}
 }

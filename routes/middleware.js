@@ -48,7 +48,10 @@ exports.flashMessages = function(req, res, next) {
 	};
 	
 	res.locals.messages = _.any(flashMessages, function(msgs) { return msgs.length; }) ? flashMessages : false;
-	
+
+
+	console.log('FLASH', res.locals.messages)
+
 	next();
 	
 };

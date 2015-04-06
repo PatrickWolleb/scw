@@ -1,35 +1,97 @@
 {% extends "templates/layouts/default.html" %}
 
 {% block content %}
-	<div class="container">
+	<div class="container" id="checkout">
+
+
+		{% if clearCart %}
+			<script type="text/javascript">
+				window.CLEAR_CART = true;
+			</script>
+		{% endif %}
 		
-			
-			<table id="checkout" class="row">
-				<thead>
-					<tr>
-						<td>name</td>
-						<td>Count</td>
-						<td>1000</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>name</td>
-						<td>Count</td>
-						<td>1000</td>
-					</tr>
-				</tbody>
+		
+		<div id="empty" class="row">
+			<h1 class="col-xs-12">Warenkorb</h1>	
+		</div>
+		
+
+
+		<div class="col-xs-12 table-responsive">	
+			<table class="table table-condensed" id="checkout-table">
+			  <thead>
+			    <tr>
+			      <th>Produkt</th>
+			      <th>Einheitspreis</th>
+			      <th>Anzahl</th>
+			      <th class="price">Preis</th>
+			    </tr>
+			  </thead>
+			  <tfoot>
+			    <tr>
+			      <td></td>
+			      <td></td>
+			      <td>Total</td>
+			      <td id="total" class="price"></td>
+			    </tr>
+  			</tfoot>
+			  <tbody>
+			  	<tr id="vat">
+			  		<td>MWST.</td>
+			  		<td>8%</td>
+			  		<td></td>
+			  		<td class="price"></td>
+			  	</tr>
+			  </tbody>
 			</table>
+		</div>	
+				
 			
-			
-			<form method="post"  action="/checkout">
+			<form id="checkout-form" method="post">
 
-				<div class="form-group">
-					<label for="firstName">Vorname:</label>
-					<input  class="form-control" type="text" id="firstName"></input>
-				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="firstName">Vorname</label>
+						<input  class="form-control" type="text" id="firstName" required name="firstName">
+					</div>
 
-				<input type="submit" value="Bestellen"> 
+					<div class="form-group">
+						<label for="lastName">Nachname</label>
+						<input  class="form-control" type="text" id="lastName" required name="lastName">
+					</div>
+
+					<div class="form-group">
+				    <label for="email">Email Adresse</label>
+				    <input type="email" class="form-control" id="email" required name="email">
+				  </div>
+			  </div>
+
+
+			  <div class="col-md-6">
+			  	<div class="form-group">
+						<label for="address1">Strasse</label>
+						<input  class="form-control" type="text" id="address1" required name="address1">
+					</div>
+
+					<div class="form-group">
+						<label for="postCode">PLZ</label>
+						<input  class="form-control" type="text" id="postCode" required name="postCode">
+					</div>
+
+					<div class="form-group">
+						<label for="city">Wohnort</label>
+						<input  class="form-control" type="text" id="city" required name="city">
+					</div>
+			  </div>
+			  
+			  <input id="data-order" type="hidden" name="order">
+
+				<div class="form-group col-xs-12">
+			    <div class="pull-right">
+			      <input class="btn btn-success" type="submit" value="Bestellen"> 
+			    </div>
+			  </div>
+
 
 			</form>
 

@@ -1,7 +1,8 @@
 	
 angle.module('wb')
 
-
+.inject('Toast', window.toastr)
+	
 .inject('Cart', {
 
 	add : function(item) {
@@ -34,6 +35,14 @@ angle.module('wb')
 		var cart = localStorage.getItem('cart') || '[]';
 		cart = JSON.parse(cart);
 		return cart;
+	},
+
+	clear: function() {
+		try {		
+			localStorage.removeItem('cart')
+		} catch (e) {
+			alert('Sie sind im Ikognitomodus oder haben nicht genug Speicherplatz.')
+		}
 	}
 
 })
@@ -42,9 +51,13 @@ angle.module('wb')
 
 .component({
 	selector : '.buy', 
-	link : function(element, Cart) {
+	link : function(element, Cart, Toast) {
 		element.addEventListener('click', function(e) {
-			Cart.add(JSON.parse(e.currentTarget.getAttribute('data-buy')));
+			
+			var product = JSON.parse(e.currentTarget.getAttribute('data-buy'));
+			Cart.add(product);
+			Toast.info(product.name + ' wurde dem Warenkorb hinzugefügt.')
+			//location.reload();
 		});
 	} 
 })
@@ -55,43 +68,78 @@ angle.module('wb')
 	selector : '#checkout', 
 	link : function(element, Cart) {
 
+		if(window.CLEAR_CART === true) {
+			Cart.clear();
+		}
+
+
+
 		var cart = Cart.get();
+	 	var vat = element.querySelector('#vat');		
+		var tBody = element.querySelector('tbody');
+		var tFoot = element.querySelector('tfoot');
+		var total = 0;
 
-		
-
+		// Render cart to table
 		cart.forEach(function(product){
-
-			var article = document.createElement('article');
-			article.setAttribute('class', 'col-xs-12 col-sm-6 col-md-4 col-lg-3 product');
-
-			var title = document.createElement('span');
+			var tr = document.createElement('tr');
+			var title = document.createElement('td');
 			title.innerHTML = product.name;
-			article.appendChild(title);
-
-			var quantity = document.createElement('span');
+			tr.appendChild(title);
+			var unitPrice = document.createElement('td');
+			unitPrice.innerHTML =  'SFr. ' + Math.round(product.content.price * 100) / 100;
+			tr.appendChild(unitPrice);
+			var quantity = document.createElement('td');
 			quantity.innerHTML =  product.count;
-			article.appendChild(quantity);
-
-
-			var price = document.createElement('span');
-			price.innerHTML = 'SFr. ' + product.content.price.toFixed(2)
-			article.appendChild(price);
-
-			
-			
-
-			element.appendChild(article);
+			tr.appendChild(quantity);
+			var price = document.createElement('td');
+			price.innerHTML = 'SFr. ' + Math.round(product.content.price * product.count * 100) / 100;
+			price.setAttribute('class', 'price');
+			tr.appendChild(price);
+			total += Math.round(product.content.price * product.count * 100) / 100;
+			tBody.insertBefore(tr, vat);
 		});
 
-		// var el = $(element); 
-		// element.querySelector('.checkout__btn').addEventListener('click', function() {
-		// 	if(el.hasClass('checkout--show')) {
-		// 		el.removeClass('checkout--show');	
-		// 	} else {
-		// 		el.addClass('checkout--show');
-		// 	}
-		// });
-
+		// Calculate VAT and total
+		var vatAmount = Math.round(total / 100 * 8 * 100) / 100 ;
+	 	tFoot.querySelector('.price').innerHTML = 'SFr. ' +  (Math.round((total + vatAmount) * 100) / 100).toFixed(2);
+		vat.querySelector('.price').innerHTML = 'SFr. ' +  vatAmount;	
 	
+		if(cart.length === 0) {
+			var p = document.createElement('p');
+			p.innerHTML = 'Ihr Warenkotb ist leer.'
+			p.setAttribute('class', 'col-xs-12')
+			element.querySelector('#empty').appendChild(p);
+			element.querySelector('#checkout-table').style.display = 'none';
+			element.querySelector('#checkout-form').style.display = 'none';
+		}
+
+		element.style.display = 'block';
 	} 
 })
+
+
+.component({
+	selector : '#checkout-form',
+	link : function(element, Cart) {
+		element.addEventListener('submit', function(e) {
+			element.querySelector('#data-order').setAttribute('value', JSON.stringify(Cart.get()));
+		});
+	}
+})
+
+
+.component({
+	selector : '#checkout-btn',
+	link : function(element, Cart) {
+		var cart = Cart.get();
+		if(cart.length !== 0) {
+
+			var l = 0;
+			cart.forEach(function(product) {
+				l += product.count;
+			});
+			element.innerHTML = element.innerHTML + ' (' + l + ')'	
+		}
+	}
+})	

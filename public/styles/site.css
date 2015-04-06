@@ -4819,6 +4819,10 @@ button.close {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; }
+  .product__price {
+    font-size: 22px;
+    margin-right: 10px;
+    font-weight: bold; }
 
 .checkout__list {
   display: none;
@@ -4829,12 +4833,14 @@ button.close {
   display: block; }
 
 #checkout {
-  width: 100%; }
+  display: none; }
+  #checkout .price {
+    text-align: right; }
 
 #header {
   margin-top: 30px; }
   #header .navbar-brand {
-    text-indent: -9999px;
+    padding-left: 70px;
     background: url('http://www.winti-baeren.ch/wp-content/uploads/b%C3%A4r_logo.png') no-repeat;
     background-size: contain; }
 
