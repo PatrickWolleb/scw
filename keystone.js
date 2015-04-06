@@ -13,8 +13,8 @@ var keystone = require('keystone'),
 
 keystone.init({
 
-	'name': 'SCW',
-	'brand': 'SCW',
+	'name': 'Winti Bären Shop',
+	'brand': 'Winti Bären',
 	
 	'sass': 'public',
 	'static': 'public',
