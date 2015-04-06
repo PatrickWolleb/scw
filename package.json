@@ -7,6 +7,7 @@
     "consolidate": "~0.10.0",
     "dotenv": "~0.4.0",
     "keystone": "~0.3.0",
+    "mandrill-api": "^1.0.41",
     "moment": "^2.9.0",
     "mongoose": "^4.0.1",
     "node-sass": "~1.0.1",
